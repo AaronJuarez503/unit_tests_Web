@@ -1,35 +1,95 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useState,type FormEvent,type ChangeEvent } from 'react';
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [numero1, setNumero1] = useState<string>('');
+  const [numero2, setNumero2] = useState<string>('');
+  const [resultado, setResultado] = useState<number | null>(null);
+
+  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    const num1 = parseFloat(numero1);
+    const num2 = parseFloat(numero2);
+
+    if (isNaN(num1) || isNaN(num2)) {
+      setResultado(null);
+      return;
+    }
+
+    setResultado(num1 + num2);
+  };
+
+  const handleChange1 = (e: ChangeEvent<HTMLInputElement>) => {
+    setNumero1(e.target.value);
+  };
+
+  const handleChange2 = (e: ChangeEvent<HTMLInputElement>) => {
+    setNumero2(e.target.value);
+  };
 
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+
+    <div style={styles.container}>
+      <h2>Sumar dos números</h2>
+      <form onSubmit={handleSubmit} style={styles.form}>
+        <input
+          type="number"
+          placeholder="Primer número"
+          value={numero1}
+          onChange={handleChange1}
+          required
+          style={styles.input}
+        />
+        <input
+          type="number"
+          placeholder="Segundo número"
+          value={numero2}
+          onChange={handleChange2}
+          required
+          style={styles.input}
+        />
+        <button type="submit" style={styles.button}>Sumar</button>
+      </form>
+      {resultado !== null && (
+        <div style={styles.resultado}>Resultado: {resultado}</div>
+      )}
+    </div>
+  );
 }
 
-export default App
+const styles: { [key: string]: React.CSSProperties } = {
+  container: {
+    maxWidth: '400px',
+    margin: '50px auto',
+    padding: '20px',
+    backgroundColor: '#fff',
+    borderRadius: '10px',
+    boxShadow: '0 0 10px rgba(0,0,0,0.1)',
+    fontFamily: 'Arial, sans-serif',
+    textAlign: 'center',
+  },
+  form: {
+    display: 'flex',
+    flexDirection: 'column',
+  },
+  input: {
+    padding: '10px',
+    marginBottom: '10px',
+    fontSize: '16px',
+  },
+  button: {
+    padding: '10px',
+    fontSize: '16px',
+    backgroundColor: '#007bff',
+    color: '#fff',
+    border: 'none',
+    cursor: 'pointer',
+  },
+  resultado: {
+    marginTop: '20px',
+    fontWeight: 'bold',
+    fontSize: '18px',
+  }
+};
+
+export default App;
