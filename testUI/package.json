@@ -10,8 +10,10 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "mocha": "^11.7.4",
     "react": "^19.1.1",
-    "react-dom": "^19.1.1"
+    "react-dom": "^19.1.1",
+    "selenium-webdriver": "^4.36.0"
   },
   "devDependencies": {
     "@eslint/js": "^9.36.0",
