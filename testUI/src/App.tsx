@@ -90,6 +90,7 @@ const styles: { [key: string]: React.CSSProperties } = {
   resultado: {
     marginTop: '20px',
     fontWeight: 'bold',
+    backgroundColor:'#ff00d4ff',
     fontSize: '18px',
   }
 };

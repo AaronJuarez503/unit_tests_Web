@@ -11,7 +11,7 @@ import assert from "assert";
     let textBox = await driver.findElement(By.name('input1'));
     let textBox2 = await driver.findElement(By.name('input2'));
    
-    await textBox.sendKeys(1);
+    await textBox.sendKeys(2);
     await textBox2.sendKeys(2);
   
     let button = await driver.findElement(By.className('btn'));
