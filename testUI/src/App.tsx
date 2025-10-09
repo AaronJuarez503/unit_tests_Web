@@ -35,6 +35,7 @@ function App() {
         <input
           type="number"
           placeholder="Primer número"
+          name='input1'
           value={numero1}
           onChange={handleChange1}
           required
@@ -42,13 +43,14 @@ function App() {
         />
         <input
           type="number"
+          name='input2'
           placeholder="Segundo número"
           value={numero2}
           onChange={handleChange2}
           required
           style={styles.input}
         />
-        <button type="submit" style={styles.button}>Sumar</button>
+        <button className='btn' type="submit" style={styles.button}>Sumar</button>
       </form>
       {resultado !== null && (
         <div style={styles.resultado}>Resultado: {resultado}</div>
